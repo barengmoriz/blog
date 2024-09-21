@@ -10,8 +10,16 @@
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="mb-6">
-                        <a href="{{ route('category.create') }}" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">Tambah Kategori</a>
+                        <x-primary-link href="{{ route('category.create') }}">Tambah Kategori</x-primary-link>
                     </div>
+
+                    @if(session('message'))
+                    <div x-data="{ open: true }">
+                        <div @click="open = ! open" x-show="open" class="w-full p-3 mb-6 text-white bg-green-500 rounded-md">
+                            {{ session('message') }}
+                        </div>
+                    </div>
+                    @endif
 
                     <div class="flex flex-col overflow-hidden border border-gray-300 rounded-md">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -20,7 +28,7 @@
                                     <th class="w-20 p-2 whitespace-nowrap">No</th>
                                     <th class="p-2 whitespace-nowrap">Slug</th>
                                     <th class="p-2 whitespace-nowrap">Nama</th>
-                                    <th class="p-2 whitespace-nowrap">Pilihan</th>
+                                    <th class="w-20 p-2 whitespace-nowrap">Pilihan</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y">
@@ -29,7 +37,16 @@
                                     <td class="px-2 py-3 text-center whitespace-nowrap">{{ $categories->firstItem() + $loop->index }}</td>
                                     <td class="px-2 py-3 whitespace-nowrap">{{ $category->slug }}</td>
                                     <td class="px-2 py-3 whitespace-nowrap">{{ $category->name }}</td>
-                                    <td class="px-2 py-3 text-center whitespace-nowrap"><a href="{{ route('category.edit', $category->id) }}" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-gray-700 uppercase transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25">Edit</a></td>
+                                    <td class="px-2 py-3 text-center whitespace-nowrap">
+                                        <div class="flex justify-center space-x-2">
+                                            <x-secondary-link href="{{ route('category.edit', $category) }}">Edit</x-secondary-link>
+                                            <form action="{{ route('category.destroy', $category) }}" onsubmit="return confirm('Apakah Anda Yakin Data {{ $category->name }} Akan Dihapus?')" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <x-danger-button>Hapus</x-danger-button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
