@@ -1,6 +1,6 @@
 ## Laravel Blog
 
-Belajar membuat Blog menggunakan Laravel
+Belajar membuat Blog menggunakan Laravel.
 
 ## Kebutuhan
 
@@ -10,13 +10,15 @@ Belajar membuat Blog menggunakan Laravel
 
 ## Instalasi Aplikasi
 
-### Download Source Code
+### Download source code
 
 ```bash
 git clone https://github.com/barengmoriz/blog.git
 ```
 
-### Instal Package
+Catatan: Jika kalian menggunakan Laravel Herd, lakukan `git clone` pada `Herd paths` yang telah kalian setting.
+
+### Instal package
 
 ```bash
 cd blog
@@ -24,19 +26,19 @@ composer install
 npm install
 ```
 
-### Salin file .env
+### Salin file `.env.example` dan ubah nama menjadi `.env`
 
 ```bash
 cp .env.example .env
 ```
 
-### Generate Key
+### Generate key
 
 ```bash
 php artisan key:generate
 ```
 
-### Setting Data & Database Pada File .env
+### Setting data & database pada file .env
 
 ```
 DB_CONNECTION=mariadb
@@ -49,15 +51,21 @@ DB_PASSWORD=
 
 Sesuaikan data pada `.env` sesuai kebutuhan
 
-### Menjalankan Aplikasi
+### Menjalankan migrasi database
+
+```bash
+php artisan migrate
+```
+
+### Menjalankan aplikasi
 
 ```bash
 php artisan serve
 ```
 
-Abaikan perintah di atas jika kalian menggunakan Laravel Herd, bisa langsung buka di browser http://blog.test
+Catatan : abaikan perintah di atas jika kalian menggunakan Laravel Herd, bisa langsung buka di browser `http://blog.test`
 
-### Auto Reload
+### Menjalankan auto reload / refresh
 
 ```bash
 npm run dev
