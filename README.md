@@ -47,9 +47,17 @@ DB_PORT=3306
 DB_DATABASE=blog
 DB_USERNAME=root
 DB_PASSWORD=
+
+FILESYSTEM_DISK=public
 ```
 
 Sesuaikan data pada `.env` sesuai kebutuhan
+
+### Menjalankan storage link
+
+```bash
+php artisan storage:link
+```
 
 ### Menjalankan migrasi database
 
