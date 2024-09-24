@@ -11,12 +11,15 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-4 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('category')" :active="request()->routeIs('category')">
-                        {{ __('Kategori') }}
+                        Kategori
+                    </x-nav-link>
+                    <x-nav-link :href="route('blog')" :active="request()->routeIs('blog')">
+                        Blog
                     </x-nav-link>
                 </div>
             </div>
@@ -74,7 +77,10 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('category')" :active="request()->routeIs('category')">
-                {{ __('Kategori') }}
+                Kategori
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('blog')" :active="request()->routeIs('blog')">
+                Blog
             </x-responsive-nav-link>
         </div>
 

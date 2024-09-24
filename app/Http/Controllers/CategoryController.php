@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index() {
-        $categories = Category::latest()->paginate(10);
+        // $categories = Category::latest()->paginate(10);
+        $categories = Category::orderBy('name')->paginate(10);
         return view('category.index', [
             'categories' => $categories
         ]);
@@ -36,7 +37,7 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('category')->with('message', 'Data ' .$category->name. ' Berhasil Disimpan');
+        return redirect()->route('category')->with('success', 'Data ' .$category->name. ' Berhasil Disimpan');
     }
 
     public function edit(Category $category){
@@ -56,11 +57,21 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('category')->with('message', 'Data ' .$category->name. ' Berhasil Diperbarui');;
+        return redirect()->route('category')->with('success', 'Data ' .$category->name. ' Berhasil Diperbarui');;
     }
 
     public function destroy(Category $category){
-        $category->delete();
-        return redirect()->route('category')->with('message', 'Data ' .$category->name. ' Berhasil Dihapus');;
+        if($category->blogs->count() > 0){
+            return [
+                'success' => false,
+                'message' => 'Data '.$category->name.' Tidak Dapat Dihapus'
+            ];
+        } else {
+            $category->delete();
+            return [
+                'success' => true,
+                'message' => 'Data '.$category->name.' Berhasil Dihapus'
+            ];
+        }
     }
 }

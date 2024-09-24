@@ -13,15 +13,7 @@
                         <x-primary-link href="{{ route('category.create') }}">Tambah Kategori</x-primary-link>
                     </div>
 
-                    @if(session('message'))
-                    <div x-data="{ open: true }">
-                        <div @click="open = ! open" x-show="open" class="w-full p-3 mb-6 text-white bg-green-500 rounded-md">
-                            {{ session('message') }}
-                        </div>
-                    </div>
-                    @endif
-
-                    <div class="flex flex-col overflow-hidden border border-gray-300 rounded-md">
+                    <div class="flex flex-col overflow-hidden overflow-x-auto border border-gray-300 rounded-md">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-100">
                                 <tr class="divide-x">
@@ -40,11 +32,11 @@
                                     <td class="px-2 py-3 text-center whitespace-nowrap">
                                         <div class="flex justify-center space-x-2">
                                             <x-secondary-link href="{{ route('category.edit', $category) }}">Edit</x-secondary-link>
-                                            <form action="{{ route('category.destroy', $category) }}" onsubmit="return confirm('Apakah Anda Yakin Data {{ $category->name }} Akan Dihapus?')" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <x-danger-button>Hapus</x-danger-button>
-                                            </form>
+                                            <x-danger-button onclick="deleteData({
+                                                'data': {{ $category }},
+                                                'dataName': '{{ $category->name }}',
+                                                'url' : '{{ route('category.destroy', $category) }}'
+                                            })">Hapus</x-danger-button>
                                         </div>
                                     </td>
                                 </tr>

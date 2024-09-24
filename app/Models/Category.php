@@ -11,4 +11,8 @@ class Category extends Model
 
     // Mass Assignment
     protected $fillable = ['slug', 'name'];
+
+    public function blogs(){
+        return $this->hasMany(Blog::class);
+    }
 }

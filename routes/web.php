@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -19,6 +20,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('category/edit/{category:slug}', [CategoryController::class, 'edit'])->name('category.edit');
         Route::put('category/update/{category:slug}', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('category/destroy/{category:slug}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+        Route::get('blog', [BlogController::class, 'index'])->name('blog');
+        Route::get('blog/create', [BlogController::class, 'create'])->name('blog.create');
+        Route::post('blog/store', [BlogController::class, 'store'])->name('blog.store');
+        Route::get('blog/edit/{blog:slug}', [BlogController::class, 'edit'])->name('blog.edit');
+        Route::put('blog/update/{blog:slug}', [BlogController::class, 'update'])->name('blog.update');
+        Route::delete('blog/destroy/{blog:slug}', [BlogController::class, 'destroy'])->name('blog.destroy');
     });
 });
 

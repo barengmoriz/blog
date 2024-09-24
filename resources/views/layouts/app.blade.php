@@ -13,6 +13,8 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <link href="{{ asset('assets/sweetalert/sweetalert2.min.css') }}" rel="stylesheet">
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -20,8 +22,8 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <header class="bg-white shadow dark:bg-gray-800">
+                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
@@ -32,5 +34,52 @@
                 {{ $slot }}
             </main>
         </div>
+
+        <script src="{{ asset('assets/sweetalert/sweetalert2.all.min.js') }}"></script>
+        <script>
+            @if(session('success'))
+                Swal.fire({
+                    title: '{{ session('success') }}',
+                    icon: 'success',
+                })
+            @elseif(session('error'))
+                Swal.fire({
+                    title: '{{ session('error') }}',
+                    icon: 'error',
+                })
+            @endif
+
+            function deleteData({data, dataName, url}){
+                const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                Swal.fire({
+                    title: `Apakah Anda Yakin Data ${dataName} Akan Dihapus?`,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#ef4444",
+                    confirmButtonText: "Ya",
+                    cancelButtonText: "Batal",
+                    preConfirm: async () => {
+                        await fetch(url, {
+                            headers: {
+                                'X-CSRF-TOKEN': token
+                            },
+                            method: 'delete',
+                            body: JSON.stringify(data)
+                        })
+                        .then(res => res.json())
+                        .then((response) => {
+                            Swal.fire({
+                                title: response.message,
+                                icon: response.success ? 'success' : 'error',
+                            }).then((result) => {
+                                location.reload();
+                            })
+                        })
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                })
+            }
+        </script>
     </body>
 </html>
