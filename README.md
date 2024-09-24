@@ -47,7 +47,9 @@ DB_PORT=3306
 DB_DATABASE=blog
 DB_USERNAME=root
 DB_PASSWORD=
+```
 
+```
 FILESYSTEM_DISK=public
 ```
 
