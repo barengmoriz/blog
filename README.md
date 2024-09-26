@@ -24,6 +24,9 @@ Lakukan perintah berikut pada aplikasi yang sudah ada
 
 ```bash
 git pull
+composer install
+npm install
+php artisan migrate
 ```
 
 ### Instal package
