@@ -18,6 +18,14 @@ git clone https://github.com/barengmoriz/blog.git
 
 Catatan: Jika kalian menggunakan Laravel Herd, lakukan `git clone` pada `Herd paths` yang telah kalian setting.
 
+Catatan : Jika sudah melakukan download dan setting aplikasi, bisa langsung update project saja tanpa instal dari awal.
+
+Lakukan perintah berikut pada aplikasi yang sudah ada
+
+```bash
+git pull
+```
+
 ### Instal package
 
 ```bash
@@ -73,7 +81,7 @@ php artisan migrate
 php artisan serve
 ```
 
-Catatan : abaikan perintah di atas jika kalian menggunakan Laravel Herd, bisa langsung buka di browser `http://blog.test`
+Catatan : abaikan perintah di atas jika kalian menggunakan Laravel Herd, bisa langsung buka di browser http://blog.test
 
 ### Menjalankan auto reload / refresh
 
