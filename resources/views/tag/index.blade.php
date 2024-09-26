@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            Kategori
+            Tag
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="mb-6">
-                        <x-primary-link href="{{ route('category.create') }}">Tambah Kategori</x-primary-link>
+                        <x-primary-link href="{{ route('tag.create') }}">Tambah Tag</x-primary-link>
                     </div>
 
                     <x-table>
@@ -23,18 +23,18 @@
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($tags as $tag)
                             <x-table.tr>
-                                <x-table.td class="text-center w-14">{{ $categories->firstItem() + $loop->index }}</x-table.td>
-                                <x-table.td>{{ $category->slug }}</x-table.td>
-                                <x-table.td>{{ $category->name }}</x-table.td>
+                                <x-table.td class="text-center w-14">{{ $tags->firstItem() + $loop->index }}</x-table.td>
+                                <x-table.td>{{ $tag->slug }}</x-table.td>
+                                <x-table.td>{{ $tag->name }}</x-table.td>
                                 <x-table.td class="w-48">
                                     <div class="flex justify-center space-x-2">
-                                        <x-secondary-link href="{{ route('category.edit', $category) }}">Edit</x-secondary-link>
+                                        <x-secondary-link href="{{ route('tag.edit', $tag) }}">Edit</x-secondary-link>
                                         <x-danger-button onclick="deleteData({
-                                            'data': {{ $category }},
-                                            'dataName': '{{ $category->name }}',
-                                            'url' : '{{ route('category.destroy', $category) }}'
+                                            'data': {{ $tag }},
+                                            'dataName': '{{ $tag->name }}',
+                                            'url' : '{{ route('tag.destroy', $tag) }}'
                                         })">Hapus</x-danger-button>
                                     </div>
                                 </x-table.td>
@@ -43,8 +43,8 @@
                         </x-table.tbody>
                     </x-table>
 
-                    <div class={{ $categories->hasPages() ? "mt-4" : "" }}>
-                        {{ $categories->links() }}
+                    <div class={{ $tags->hasPages() ? "mt-4" : "" }}>
+                        {{ $tags->links() }}
                     </div>
                 </div>
             </div>

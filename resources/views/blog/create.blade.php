@@ -43,6 +43,17 @@
                         @error('category')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
+                        <div class="flex flex-col space-y-2">
+                            <label for="tag">Tag</label>
+                            <x-select class="select2" id="tag" name="tag[]" multiple>
+                                @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @endforeach
+                            </x-select>
+                        </div>
+                        @error('tag')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                         <div class="mt-2 space-x-1">
                             <x-primary-button>Simpan</x-primary-button>
                             <x-secondary-link href="{{ route('blog') }}">Kembali</x-secondary-link>

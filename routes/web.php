@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('category/edit/{category:slug}', [CategoryController::class, 'edit'])->name('category.edit');
         Route::put('category/update/{category:slug}', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('category/destroy/{category:slug}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+        Route::get('tag', [TagController::class, 'index'])->name('tag');
+        Route::get('tag/create', [TagController::class, 'create'])->name('tag.create');
+        Route::post('tag/store', [TagController::class, 'store'])->name('tag.store');
+        Route::get('tag/edit/{tag:slug}', [TagController::class, 'edit'])->name('tag.edit');
+        Route::put('tag/update/{tag:slug}', [TagController::class, 'update'])->name('tag.update');
+        Route::delete('tag/destroy/{tag:slug}', [TagController::class, 'destroy'])->name('tag.destroy');
 
         Route::get('blog', [BlogController::class, 'index'])->name('blog');
         Route::get('blog/create', [BlogController::class, 'create'])->name('blog.create');

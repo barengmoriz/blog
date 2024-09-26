@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('category')" :active="request()->routeIs('category')">
                         Kategori
                     </x-nav-link>
+                    <x-nav-link :href="route('tag')" :active="request()->routeIs('tag')">
+                        Tag
+                    </x-nav-link>
                     <x-nav-link :href="route('blog')" :active="request()->routeIs('blog')">
                         Blog
                     </x-nav-link>
@@ -78,6 +81,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('category')" :active="request()->routeIs('category')">
                 Kategori
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tag')" :active="request()->routeIs('tag')">
+                Tag
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('blog')" :active="request()->routeIs('blog')">
                 Blog

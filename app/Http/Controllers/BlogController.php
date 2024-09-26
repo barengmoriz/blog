@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Support\Str;
@@ -19,8 +20,10 @@ class BlogController extends Controller
 
     public function create(){
         $categories = Category::orderBy('name')->get();
+        $tags = Tag::orderBy('name')->get();
         return view('blog.create', [
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 
@@ -45,14 +48,18 @@ class BlogController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
+        $blog->tags()->sync($request->tag);
+
         return redirect()->route('blog')->with('success', 'Data ' .$blog->name. ' Berhasil Disimpan');
     }
 
     public function edit(Blog $blog){
         $categories = Category::orderBy('name')->get();
+        $tags = Tag::orderBy('name')->get();
         return view('blog.edit', [
             'blog' => $blog,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 
@@ -65,9 +72,10 @@ class BlogController extends Controller
         ]);
 
         if($request->hasFile('image')){
+            Storage::delete($blog->image);
+            
             $file = $request->file('image');
             $image = $file->storeAs('images/blog', $blog->slug . '.' . $file->extension());
-            Storage::delete($blog->image);
 
             $blog->update([
                 'title' => $request->title,
@@ -82,6 +90,8 @@ class BlogController extends Controller
                 'category_id' => $request->category
             ]);
         }
+
+        $blog->tags()->sync($request->tag);
 
         return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' Berhasil Diperbarui');
     }

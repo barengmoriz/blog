@@ -15,6 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <link href="{{ asset('assets/sweetalert/sweetalert2.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/select2/select2.min.css') }}" rel="stylesheet" />
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -80,6 +81,14 @@
                     allowOutsideClick: () => !Swal.isLoading()
                 })
             }
+        </script>
+
+        <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/select2/select2.min.js') }}"></script>
+        <script>
+            $(document).ready(function() {
+                $('.select2').select2();
+            });
         </script>
     </body>
 </html>

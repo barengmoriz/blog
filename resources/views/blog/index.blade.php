@@ -13,49 +13,51 @@
                         <x-primary-link href="{{ route('blog.create') }}">Tambah Blog</x-primary-link>
                     </div>
 
-                    <div class="flex flex-col overflow-hidden overflow-x-auto border border-gray-300 rounded-md">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-100">
-                                <tr class="divide-x">
-                                    <th class="w-20 p-2 whitespace-nowrap">No</th>
-                                    <th class="p-2 whitespace-nowrap">Judul</th>
-                                    <th class="p-2 whitespace-nowrap">Gambar</th>
-                                    <th class="p-2 whitespace-nowrap">Deskripsi</th>
-                                    <th class="p-2 whitespace-nowrap">Kategori</th>
-                                    <th class="p-2 whitespace-nowrap">Penulis</th>
-                                    <th class="w-20 p-2 whitespace-nowrap">Pilihan</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y">
-                                @foreach ($blogs as $blog)
-                                <tr class="divide-x">
-                                    <td class="px-2 py-3 text-center whitespace-nowrap">{{ $blogs->firstItem() + $loop->index }}</td>
-                                    <td class="px-2 py-3">{{ $blog->title }}</td>
-                                    <td class="px-2 py-3">
-                                        <img src="{{ Storage::url($blog->image) }}" alt="">
-                                    </td>
-                                    <td class="px-2 py-3">
-                                        <div class="w-56 line-clamp-4">
-                                            {{ $blog->description }}
-                                        </div>
-                                    </td>
-                                    <td class="px-2 py-3">{{ $blog->category->name }}</td>
-                                    <td class="px-2 py-3">{{ $blog->user->name }}</td>
-                                    <td class="px-2 py-3 text-center whitespace-nowrap">
-                                        <div class="flex justify-center space-x-2">
-                                            <x-secondary-link href="{{ route('blog.edit', $blog) }}">Edit</x-secondary-link>
-                                            <x-danger-button onclick="deleteData({
-                                                'data': {{ $blog }},
-                                                'dataName': '{{ $blog->title }}',
-                                                'url' : '{{ route('blog.destroy', $blog) }}'
-                                            })">Hapus</x-danger-button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    <x-table>
+                        <x-table.thead>
+                            <x-table.tr class="divide-x">
+                                <x-table.th>No</x-table.th>
+                                <x-table.th>Judul</x-table.th>
+                                <x-table.th>Gambar</x-table.th>
+                                <x-table.th>Deskripsi</x-table.th>
+                                <x-table.th>Kategori</x-table.th>
+                                <x-table.th>Tag</x-table.th>
+                                <x-table.th>Penulis</x-table.th>
+                                <x-table.th>Pilihan</x-table.th>
+                            </x-table.tr>
+                        </x-table.thead>
+                        <x-table.tbody>
+                            @foreach ($blogs as $blog)
+                            <x-table.tr>
+                                <x-table.td class="text-center w-14">{{ $blogs->firstItem() + $loop->index }}</x-table.td>
+                                <x-table.td>{{ $blog->title }}</x-table.td>
+                                <x-table.td> 
+                                    <div class="w-40">
+                                        <img src="{{ Storage::url($blog->image) }}" alt="" class="rounded-md">
+                                    </div>
+                                </x-table.td>
+                                <x-table.td>
+                                    <div class="w-56 line-clamp-4">
+                                        {{ $blog->description }}
+                                    </div>
+                                </x-table.td>
+                                <x-table.td class="text-center">{{ $blog->category->name }}</x-table.td>
+                                <x-table.td class="text-center whitespace-nowrap">{{ $blog->tags->implode('name', ', ') }}</x-table.td>
+                                <x-table.td class="text-center">{{ $blog->user->name }}</x-table.td>
+                                <x-table.td>
+                                    <div class="flex justify-center space-x-2">
+                                        <x-secondary-link href="{{ route('blog.edit', $blog) }}">Edit</x-secondary-link>
+                                        <x-danger-button onclick="deleteData({
+                                            'data': {{ $blog }},
+                                            'dataName': '{{ $blog->title }}',
+                                            'url' : '{{ route('blog.destroy', $blog) }}'
+                                        })">Hapus</x-danger-button>
+                                    </div>
+                                </x-table.td>
+                            </x-table.tr>
+                            @endforeach
+                        </x-table.tbody>
+                    </x-table>
 
                     <div class={{ $blogs->hasPages() ? "mt-4" : "" }}>
                         {{ $blogs->links() }}
