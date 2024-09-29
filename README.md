@@ -8,15 +8,7 @@ Belajar membuat Blog menggunakan Laravel.
 -   Composer
 -   NodeJS
 
-## Instalasi Aplikasi
-
-### Download source code
-
-```bash
-git clone https://github.com/barengmoriz/blog.git
-```
-
-Catatan: Jika kalian menggunakan Laravel Herd, lakukan `git clone` pada `Herd paths` yang telah kalian setting.
+## Update Aplikasi
 
 Catatan : Jika sudah melakukan download dan setting aplikasi, bisa langsung update project saja tanpa instal dari awal.
 
@@ -28,6 +20,23 @@ composer install
 npm install
 php artisan migrate
 ```
+
+Setting file .env
+
+```
+APP_LOCALE=id
+FILESYSTEM_DISK=public
+```
+
+## Instalasi Aplikasi
+
+### Download source code
+
+```bash
+git clone https://github.com/barengmoriz/blog.git
+```
+
+Catatan: Jika kalian menggunakan Laravel Herd, lakukan `git clone` pada `Herd paths` yang telah kalian setting.
 
 ### Instal package
 
@@ -58,9 +67,8 @@ DB_PORT=3306
 DB_DATABASE=blog
 DB_USERNAME=root
 DB_PASSWORD=
-```
 
-```
+APP_LOCALE=id
 FILESYSTEM_DISK=public
 ```
 
