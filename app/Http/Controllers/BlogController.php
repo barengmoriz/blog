@@ -32,7 +32,8 @@ class BlogController extends Controller
             'title' => ['required'],
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png'],
             'description' => ['required'],
-            'category' => ['required']
+            'category' => ['required'],
+            'tag' => ['required'],
         ]);
 
         $slug = Str::slug($request->title, '-') . '-' . Str::random(5);
@@ -68,7 +69,8 @@ class BlogController extends Controller
             'title' => ['required'],
             'image' => ['image', 'mimes:jpg,jpeg,png'],
             'description' => ['required'],
-            'category' => ['required']
+            'category' => ['required'],
+            'tag' => ['required'],
         ]);
 
         if($request->hasFile('image')){
@@ -104,5 +106,11 @@ class BlogController extends Controller
             'success' => true,
             'message' => 'Data '. $blog->title .' Berhasil Dihapus'
         ];
+    }
+
+    public function show(Blog $blog){
+        return view('public.blog', [
+            'blog' => $blog
+        ]);
     }
 }
