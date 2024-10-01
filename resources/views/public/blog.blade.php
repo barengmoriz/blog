@@ -18,6 +18,6 @@
                 @endforeach
             </div>
         </div>
-        <div>{{ $blog->description }}</div>
+        <div class="prose max-w-none">{!! $blog->description !!}</div>
     </div>
 </x-public-layout>
