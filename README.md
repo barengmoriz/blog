@@ -26,6 +26,7 @@ Setting file .env
 ```
 APP_LOCALE=id
 FILESYSTEM_DISK=public
+API_KEY_TINYMCE="isiapikeytinymcekamu"
 ```
 
 ## Instalasi Aplikasi
@@ -70,6 +71,7 @@ DB_PASSWORD=
 
 APP_LOCALE=id
 FILESYSTEM_DISK=public
+API_KEY_TINYMCE="isiapikeytinymcekamu"
 ```
 
 Sesuaikan data pada `.env` sesuai kebutuhan
