@@ -35,6 +35,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('blog/edit/{blog:slug}', [BlogController::class, 'edit'])->name('blog.edit');
         Route::put('blog/update/{blog:slug}', [BlogController::class, 'update'])->name('blog.update');
         Route::delete('blog/destroy/{blog:slug}', [BlogController::class, 'destroy'])->name('blog.destroy');
+        
+        Route::put('blog/publish/{blog:slug}', [BlogController::class, 'publish'])->name('blog.publish');
+        Route::put('blog/unpublish/{blog:slug}', [BlogController::class, 'unpublish'])->name('blog.unpublish');
     });
 });
 
