@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class BlogController extends Controller
 {
     public function index() {
-        $blogs = Blog::latest()->paginate(10);
+        $blogs = Blog::latest()->where('user_id', auth()->user()->id)->paginate(10);
         return view('blog.index', [
             'blogs' => $blogs
         ]);
@@ -31,6 +31,7 @@ class BlogController extends Controller
         $request->validate([
             'title' => ['required'],
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png'],
+            'short_description' => ['required'],
             'description' => ['required'],
             'category' => ['required'],
             'tag' => ['required'],
@@ -44,6 +45,7 @@ class BlogController extends Controller
             'title' => $request->title,
             'slug' => $slug,
             'image' => $image,
+            'short_description' => $request->short_description,
             'description' => $request->description,
             'category_id' => $request->category,
             'user_id' => auth()->user()->id
@@ -68,6 +70,7 @@ class BlogController extends Controller
         $request->validate([
             'title' => ['required'],
             'image' => ['image', 'mimes:jpg,jpeg,png'],
+            'short_description' => ['required'],
             'description' => ['required'],
             'category' => ['required'],
             'tag' => ['required'],
@@ -82,12 +85,14 @@ class BlogController extends Controller
             $blog->update([
                 'title' => $request->title,
                 'image' => $image,
+                'short_description' => $request->short_description,
                 'description' => $request->description,
                 'category_id' => $request->category
             ]);
         } else {
             $blog->update([
                 'title' => $request->title,
+                'short_description' => $request->short_description,
                 'description' => $request->description,
                 'category_id' => $request->category
             ]);
@@ -112,5 +117,21 @@ class BlogController extends Controller
         return view('public.blog', [
             'blog' => $blog
         ]);
+    }
+
+    public function publish(Blog $blog){
+        $blog->update([
+            'is_publish' => true
+        ]);
+
+        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' Berhasil Dipublish');
+    }
+
+    public function unpublish(Blog $blog){
+        $blog->update([
+            'is_publish' => false
+        ]);
+
+        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' Berhasil Diunpublish');
     }
 }
