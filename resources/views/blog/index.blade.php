@@ -23,6 +23,7 @@
                                 <x-table.th>Kategori</x-table.th>
                                 <x-table.th>Tag</x-table.th>
                                 <x-table.th>Penulis</x-table.th>
+                                <x-table.th>Publish</x-table.th>
                                 <x-table.th>Pilihan</x-table.th>
                             </x-table.tr>
                         </x-table.thead>
@@ -36,17 +37,33 @@
                                         <img src="{{ Storage::url($blog->image) }}" alt="" class="rounded-md">
                                     </div>
                                 </x-table.td>
-                                <x-table.td>
-                                    <div class="w-56 line-clamp-4">
-                                        {{ $blog->description }}
-                                    </div>
-                                </x-table.td>
+                                <x-table.td>{{ $blog->short_description }}</x-table.td>
                                 <x-table.td class="text-center">{{ $blog->category->name }}</x-table.td>
                                 <x-table.td class="text-center whitespace-nowrap">{{ $blog->tags->implode('name', ', ') }}</x-table.td>
                                 <x-table.td class="text-center">{{ $blog->user->name }}</x-table.td>
+                                <x-table.td class="text-center">
+                                    @if ($blog->is_publish)
+                                        <div class="font-bold text-green-500">Tayang</div>
+                                    @else
+                                        <div class="font-bold text-orange-500">Tidak Tayang</div>
+                                    @endif
+                                </x-table.td>
                                 <x-table.td>
                                     <div class="flex justify-center space-x-2">
                                         <x-secondary-link href="{{ route('blog.edit', $blog) }}">Edit</x-secondary-link>
+                                        @if ($blog->is_publish)
+                                        <form method="post" action="{{ route('blog.unpublish', $blog) }}">
+                                            @csrf
+                                            @method('put')
+                                            <x-primary-button class="bg-orange-500 hover:bg-orange-400 focus:bg-orange-400 active:bg-orange-400">Unublish</x-primary-button>
+                                        </form>
+                                        @else
+                                        <form method="post" action="{{ route('blog.publish', $blog) }}">
+                                            @csrf
+                                            @method('put')
+                                            <x-primary-button class="bg-green-500 hover:bg-green-400 focus:bg-green-400 active:bg-green-400">Publish</x-primary-button>
+                                        </form>
+                                        @endif                                       
                                         <x-danger-button onclick="deleteData({
                                             'data': {{ $blog }},
                                             'dataName': '{{ $blog->title }}',

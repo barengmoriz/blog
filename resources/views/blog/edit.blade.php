@@ -28,6 +28,13 @@
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
                         <div class="flex flex-col space-y-2">
+                            <label for="short_description">Deskripsi Singkat</label>
+                            <x-text-area id="short_description" name="short_description" rows='3'>{{ $blog->short_description }}</x-text-area>
+                        </div>
+                        @error('short_description')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
+                        <div class="flex flex-col space-y-2">
                             <label for="description">Deskripsi</label>
                             <x-text-area id="description" name="description" rows='6'>{{ $blog->description }}</x-text-area>
                         </div>
