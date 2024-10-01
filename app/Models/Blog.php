@@ -12,7 +12,7 @@ class Blog extends Model
     use HasFactory;
 
     // Mass Assignment
-    protected $fillable = ['title', 'slug', 'image', 'description', 'category_id', 'user_id'];
+    protected $fillable = ['title', 'slug', 'image', 'short_description', 'description', 'category_id', 'user_id', 'is_publish'];
 
     public function category(){
         return $this->belongsTo(Category::class, 'category_id');
