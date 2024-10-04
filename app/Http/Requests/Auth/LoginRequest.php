@@ -11,6 +11,20 @@ use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
 {
+    protected $account;
+
+    public function __construct()
+    {
+        $requestAccount = request('email');
+        $this->account = 'username';
+
+        if(filter_var($requestAccount, FILTER_VALIDATE_EMAIL)){
+            $this->account = 'email';
+        }
+
+        request()->merge([$this->account => $requestAccount]);
+        
+    }
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -27,7 +41,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            $this->account => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -41,11 +55,11 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only($this->account, 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                $this->account => trans('auth.failed'),
             ]);
         }
 
@@ -68,7 +82,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
+            $this->account => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
