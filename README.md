@@ -19,6 +19,7 @@ git pull
 composer install
 npm install
 php artisan migrate
+php artisan app:generate-username
 ```
 
 Setting file .env
@@ -27,6 +28,12 @@ Setting file .env
 APP_LOCALE=id
 FILESYSTEM_DISK=public
 API_KEY_TINYMCE="isiapikeytinymcekamu"
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=username_mailtrap
+MAIL_PASSWORD=password_mailtrap
 ```
 
 ## Instalasi Aplikasi
@@ -72,6 +79,12 @@ DB_PASSWORD=
 APP_LOCALE=id
 FILESYSTEM_DISK=public
 API_KEY_TINYMCE="isiapikeytinymcekamu"
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=username_mailtrap
+MAIL_PASSWORD=password_mailtrap
 ```
 
 Sesuaikan data pada `.env` sesuai kebutuhan
