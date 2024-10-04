@@ -50,11 +50,12 @@
                 })
             @endif
 
-            function deleteData({data, dataName, url}){
+            function deleteData({data, dataName, url, message}){
+                event.preventDefault();
                 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
                 Swal.fire({
-                    title: `Apakah Anda Yakin Data ${dataName} Akan Dihapus?`,
+                    title: message == undefined ? `Apakah Anda Yakin Data ${dataName} Akan Dihapus?` : message,
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#ef4444",
