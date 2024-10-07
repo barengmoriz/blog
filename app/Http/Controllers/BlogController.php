@@ -53,7 +53,7 @@ class BlogController extends Controller
 
         $blog->tags()->sync($request->tag);
 
-        return redirect()->route('blog')->with('success', 'Data ' .$blog->name. ' Berhasil Disimpan');
+        return redirect()->route('blog')->with('success', 'Data ' .$blog->name. ' berhasil disimpan');
     }
 
     public function edit(Blog $blog){
@@ -100,17 +100,25 @@ class BlogController extends Controller
 
         $blog->tags()->sync($request->tag);
 
-        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' Berhasil Diperbarui');
+        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' berhasil diperbarui');
     }
 
     public function destroy(Blog $blog){
-        $blog->delete();
-        Storage::delete($blog->image);
+        if($blog->is_publish){
+            return [
+                'success' => false,
+                'message' => 'Data '. $blog->title .' tidak dapat dihapus'
+            ];
 
-        return [
-            'success' => true,
-            'message' => 'Data '. $blog->title .' Berhasil Dihapus'
-        ];
+        } else {
+            $blog->delete();
+            Storage::delete($blog->image);
+    
+            return [
+                'success' => true,
+                'message' => 'Data '. $blog->title .' berhasil dihapus'
+            ];
+        }
     }
 
     public function show(Blog $blog){
@@ -124,7 +132,7 @@ class BlogController extends Controller
             'is_publish' => true
         ]);
 
-        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' Berhasil Dipublish');
+        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' berhasil dipublish');
     }
 
     public function unpublish(Blog $blog){
@@ -132,6 +140,6 @@ class BlogController extends Controller
             'is_publish' => false
         ]);
 
-        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' Berhasil Diunpublish');
+        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' berhasil diunpublish');
     }
 }

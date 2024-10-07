@@ -13,56 +13,44 @@
                         @csrf
                         @method('put')
                         <div class="flex flex-col space-y-2">
-                            <label for="title">Judul</label>
+                            <x-input-label for="title" :value="'Judul'" />
                             <x-text-input type="text" id="title" name="title" value="{{ $blog->title }}" />
                         </div>
-                        @error('title')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
+                        <x-input-error :messages="$errors->get('title')" />
                         <div class="flex flex-col space-y-2">
-                            <label for="image">Gambar</label>
+                            <x-input-label for="image" :value="'Gambar'" />
                             <img src="{{ Storage::url($blog->image) }}" alt="" class="rounded-lg w-80">
                             <x-text-input type="file" accept=".jpg, .jpeg, .png" id="image" name="image" class="focus:outline-none" />
                         </div>
-                        @error('image')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
+                        <x-input-error :messages="$errors->get('image')" />
                         <div class="flex flex-col space-y-2">
-                            <label for="short_description">Deskripsi Singkat</label>
+                            <x-input-label for="short_description" :value="'Deskripsi Singkat'" />
                             <x-text-area id="short_description" name="short_description" rows='3'>{{ $blog->short_description }}</x-text-area>
                         </div>
-                        @error('short_description')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
+                        <x-input-error :messages="$errors->get('short_description')" />
                         <div class="flex flex-col space-y-2">
-                            <label for="description">Deskripsi</label>
+                            <x-input-label for="description" :value="'Deskripsi'" />
                             <x-text-area id="description" name="description" rows='6'>{{ $blog->description }}</x-text-area>
                         </div>
-                        @error('description')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
+                        <x-input-error :messages="$errors->get('description')" />
                         <div class="flex flex-col space-y-2">
-                            <label for="category">Kategori</label>
+                            <x-input-label for="category" :value="'Kategori'" />
                             <x-select id="category" name="category">
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}" {{ $category->id == $blog->category_id ? 'selected': '' }}>{{ $category->name }}</option>
                                 @endforeach
                             </x-select>
                         </div>
-                        @error('category')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
+                        <x-input-error :messages="$errors->get('category')" />
                         <div class="flex flex-col space-y-2">
-                            <label for="tag">Tag</label>
+                            <x-input-label for="tag" :value="'Tag'" />
                             <x-select class="select2" id="tag" name="tag[]" multiple>
                                 @foreach ($tags as $tag)
                                 <option value="{{ $tag->id }}" {{ $blog->tags()->find($tag->id) ? 'selected': '' }}>{{ $tag->name }}</option>
                                 @endforeach
                             </x-select>
                         </div>
-                        @error('tag')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
+                        <x-input-error :messages="$errors->get('tag')" />
                         <div class="mt-2 space-x-1">
                             <x-primary-button>Perbarui</x-primary-button>
                             <x-secondary-link href="{{ route('blog') }}">Kembali</x-secondary-link>

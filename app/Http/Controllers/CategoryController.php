@@ -37,7 +37,7 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('category')->with('success', 'Data ' .$category->name. ' Berhasil Disimpan');
+        return redirect()->route('category')->with('success', 'Data ' .$category->name. ' berhasil disimpan');
     }
 
     public function edit(Category $category){
@@ -57,20 +57,20 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('category')->with('success', 'Data ' .$category->name. ' Berhasil Diperbarui');;
+        return redirect()->route('category')->with('success', 'Data ' .$category->name. ' berhasil diperbarui');;
     }
 
     public function destroy(Category $category){
         if($category->blogs->count() > 0){
             return [
                 'success' => false,
-                'message' => 'Data '.$category->name.' Tidak Dapat Dihapus'
+                'message' => 'Data '.$category->name.' tidak dapat dihapus'
             ];
         } else {
             $category->delete();
             return [
                 'success' => true,
-                'message' => 'Data '.$category->name.' Berhasil Dihapus'
+                'message' => 'Data '.$category->name.' berhasil dihapus'
             ];
         }
     }

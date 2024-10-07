@@ -12,12 +12,10 @@
                     <form action="{{ route('category.store') }}" method="post">
                         @csrf
                         <div class="flex flex-col space-y-2">
-                            <label for="name">Nama</label>
+                            <x-input-label for="name" :value="'Nama'" />
                             <x-text-input type="text" id="name" name="name" value="{{ old('name') }}" />
                         </div>
-                        @error('name')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         <div class="mt-2 space-x-1">
                             <x-primary-button>Simpan</x-primary-button>
                             <x-secondary-link href="{{ route('category') }}">Kembali</x-secondary-link>

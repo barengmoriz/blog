@@ -29,7 +29,7 @@ class TagController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('tag')->with('success', 'Data ' .$tag->name. ' Berhasil Disimpan');
+        return redirect()->route('tag')->with('success', 'Data ' .$tag->name. ' berhasil disimpan');
     }
 
     public function edit(Tag $tag){
@@ -48,20 +48,20 @@ class TagController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('tag')->with('success', 'Data ' .$tag->name. ' Berhasil Diperbarui');;
+        return redirect()->route('tag')->with('success', 'Data ' .$tag->name. ' berhasil diperbarui');;
     }
 
     public function destroy(Tag $tag){
         if($tag->blogs->count() > 0){
             return [
                 'success' => false,
-                'message' => 'Data '.$tag->name.' Tidak Dapat Dihapus'
+                'message' => 'Data '.$tag->name.' tidak dapat dihapus'
             ];
         } else {
             $tag->delete();
             return [
                 'success' => true,
-                'message' => 'Data '.$tag->name.' Berhasil Dihapus'
+                'message' => 'Data '.$tag->name.' berhasil dihapus'
             ];
         }
     }

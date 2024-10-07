@@ -42,11 +42,13 @@
                 Swal.fire({
                     title: '{{ session('success') }}',
                     icon: 'success',
+                    confirmButtonColor: "#22c55e",
                 })
             @elseif(session('error'))
                 Swal.fire({
                     title: '{{ session('error') }}',
                     icon: 'error',
+                    confirmButtonColor: "#22c55e",
                 })
             @endif
 
@@ -55,7 +57,7 @@
                 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
                 Swal.fire({
-                    title: message == undefined ? `Apakah Anda Yakin Data ${dataName} Akan Dihapus?` : message,
+                    title: message == undefined ? `Apakah anda yakin data "${dataName}" akan dihapus?` : message,
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#ef4444",
@@ -74,6 +76,7 @@
                             Swal.fire({
                                 title: response.message,
                                 icon: response.success ? 'success' : 'error',
+                                confirmButtonColor: "#22c55e",
                             }).then((result) => {
                                 location.reload();
                             })

@@ -46,7 +46,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('success', 'Successfully update profile');
+        return Redirect::route('profile.edit')->with('success', 'Informasi profil berhasil diperbarui');
     }
 
     /**
@@ -86,7 +86,7 @@ class ProfileController extends Controller
             'image' => $image
         ]);
 
-        return Redirect::route('profile.edit')->with('success', 'Successfully upload image');
+        return Redirect::route('profile.edit')->with('success', 'Foto profil berhasil diperbarui');
     }
 
     public function imageDestroy(){
@@ -101,7 +101,7 @@ class ProfileController extends Controller
 
         return [
             'success' => true,
-            'message' => 'Gambar Berhasil Dihapus'
+            'message' => 'Foto profil berhasil dihapus'
         ];
     }
 }
