@@ -8,7 +8,13 @@ Belajar membuat Blog menggunakan Laravel.
 -   Composer
 -   NodeJS
 
-## Update Aplikasi
+## Fitur
+
+-   CRUD Kategori
+-   CRUD Tag
+-   CRUD Blog
+
+## Perbarui Aplikasi
 
 Catatan : Jika sudah melakukan download dan setting aplikasi, bisa langsung update project saja tanpa instal dari awal.
 
@@ -38,7 +44,7 @@ MAIL_PASSWORD=password_mailtrap
 
 ## Instalasi Aplikasi
 
-### Download source code
+### Unduh source code
 
 ```bash
 git clone https://github.com/barengmoriz/blog.git
@@ -46,7 +52,7 @@ git clone https://github.com/barengmoriz/blog.git
 
 Catatan: Jika kalian menggunakan Laravel Herd, lakukan `git clone` pada `Herd paths` yang telah kalian setting.
 
-### Instal package
+### Instal paket php dan nodejs
 
 ```bash
 cd blog
@@ -60,13 +66,13 @@ npm install
 cp .env.example .env
 ```
 
-### Generate key
+### Membuat kunci aplikasi
 
 ```bash
 php artisan key:generate
 ```
 
-### Setting data & database pada file .env
+### Sesuaikan data & database pada file .env
 
 ```
 DB_CONNECTION=mysql
@@ -109,8 +115,17 @@ php artisan serve
 
 Catatan : abaikan perintah di atas jika kalian menggunakan Laravel Herd, bisa langsung buka di browser http://blog.test
 
-### Menjalankan auto reload / refresh
+### Menjalankan auto refresh / hot reload
 
 ```bash
 npm run dev
 ```
+
+## Tautan Pendukung
+
+-   Laravel : https://laravel.com
+-   TailwindCSS : https://tailwindcss.com
+-   TinyMCE : https://www.tiny.cloud
+-   Mailtrap : https://mailtrap.io
+-   SweetAlert : https://sweetalert2.github.io
+-   Select2 : https://select2.org
