@@ -132,7 +132,7 @@ class BlogController extends Controller
             'is_publish' => true
         ]);
 
-        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' berhasil dipublish');
+        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' berhasil ditayangkan');
     }
 
     public function unpublish(Blog $blog){
@@ -140,6 +140,6 @@ class BlogController extends Controller
             'is_publish' => false
         ]);
 
-        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' berhasil diunpublish');
+        return redirect()->route('blog')->with('success', 'Data ' .$blog->title. ' berhasil dibatalkan');
     }
 }
