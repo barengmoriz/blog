@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('blog')" :active="request()->routeIs('blog')">
                         Blog
                     </x-nav-link>
+                    <x-nav-link :href="route('user')" :active="request()->routeIs('user')">
+                        Pengguna
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -91,6 +94,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('blog')" :active="request()->routeIs('blog')">
                 Blog
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user')" :active="request()->routeIs('user')">
+                Pengguna
             </x-responsive-nav-link>
         </div>
 
