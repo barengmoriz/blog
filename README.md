@@ -10,13 +10,36 @@ Belajar membuat Blog menggunakan Laravel.
 
 ## Fitur
 
--   CRUD Kategori
--   CRUD Tag
--   CRUD Blog
+### 1. Kategori
+
+-   Tambah Data Kategori
+-   Edit Data Kategori
+-   Hapus Data Kategori
+
+### 2. Tag
+
+-   Tambah Data Tag
+-   Edit Data Tag
+-   Hapus Data Tag
+
+### 3. Blog
+
+-   Tambah Data Blog
+-   Edit Data Blog
+-   Hapus Data Blog
+-   Tayang Blog
+
+### 4. Pengguna
+
+-   Tambah Data Pengguna
+-   Edit Data Pengguna
+-   Hapus Data Pengguna
+-   Verifikasi Email
+-   Foto Profil
 
 ## Perbarui Aplikasi
 
-Catatan : Jika sudah melakukan download dan setting aplikasi, bisa langsung update project saja tanpa instal dari awal.
+Catatan : Jika sudah melakukan unduh dan atur aplikasi, bisa langsung perbarui aplikasi saja tanpa instal dari awal.
 
 Lakukan perintah berikut pada aplikasi yang sudah ada
 
@@ -28,7 +51,7 @@ php artisan migrate
 php artisan app:generate-username
 ```
 
-Setting file .env
+Konfigurasi file .env
 
 ```
 APP_LOCALE=id
@@ -50,7 +73,7 @@ MAIL_PASSWORD=password_mailtrap
 git clone https://github.com/barengmoriz/blog.git
 ```
 
-Catatan: Jika kalian menggunakan Laravel Herd, lakukan `git clone` pada `Herd paths` yang telah kalian setting.
+Catatan: Jika kalian menggunakan Laravel Herd, lakukan `git clone` pada `Herd paths` yang telah kalian atur.
 
 ### Instal paket php dan nodejs
 
@@ -93,7 +116,7 @@ MAIL_USERNAME=username_mailtrap
 MAIL_PASSWORD=password_mailtrap
 ```
 
-Sesuaikan data pada `.env` sesuai kebutuhan
+Sesuaikan konfigurasi pada `.env` sesuai kebutuhan
 
 ### Menjalankan storage link
 
@@ -126,6 +149,8 @@ npm run dev
 -   Laravel : https://laravel.com
 -   TailwindCSS : https://tailwindcss.com
 -   TinyMCE : https://www.tiny.cloud
+-   Avatar : https://github.com/laravolt/avatar
 -   Mailtrap : https://mailtrap.io
 -   SweetAlert : https://sweetalert2.github.io
 -   Select2 : https://select2.org
+-   FakeData : https://www.fakedata.pro
