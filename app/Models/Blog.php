@@ -15,7 +15,7 @@ class Blog extends Model
     protected $fillable = ['title', 'slug', 'image', 'short_description', 'description', 'category_id', 'user_id', 'is_publish'];
 
     public function category(){
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class);
     }
 
     public function tags(){
@@ -23,7 +23,7 @@ class Blog extends Model
     }
 
     public function user(){
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     protected function customCreatedAt(): Attribute 
