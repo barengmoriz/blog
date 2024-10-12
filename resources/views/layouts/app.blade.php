@@ -78,7 +78,11 @@
                                 icon: response.success ? 'success' : 'error',
                                 confirmButtonColor: "#22c55e",
                             }).then((result) => {
-                                location.reload();
+                                if(response.redirect){
+                                    window.location.replace(response.redirect)
+                                } else {
+                                    location.reload();
+                                }
                             })
                         })
                     },
