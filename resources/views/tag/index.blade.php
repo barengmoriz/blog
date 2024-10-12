@@ -43,9 +43,11 @@
                         </x-table.tbody>
                     </x-table>
 
-                    <div class={{ $tags->hasPages() ? "mt-4" : "" }}>
+                    @if ($tags->hasPages())
+                    <div class="mt-4">
                         {{ $tags->links() }}
-                    </div>
+                    </div>                    
+                    @endif
                 </div>
             </div>
         </div>

@@ -42,10 +42,12 @@
                             @endforeach
                         </x-table.tbody>
                     </x-table>
-
-                    <div class={{ $categories->hasPages() ? "mt-4" : "" }}>
+                    
+                    @if ($categories->hasPages())
+                    <div class="mt-4">
                         {{ $categories->links() }}
-                    </div>
+                    </div>                    
+                    @endif
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@
                                 <x-table.th>Kategori</x-table.th>
                                 <x-table.th>Tag</x-table.th>
                                 <x-table.th>Penulis</x-table.th>
-                                <x-table.th>Publish</x-table.th>
+                                <x-table.th>Tayang</x-table.th>
                                 <x-table.th>Pilihan</x-table.th>
                             </x-table.tr>
                         </x-table.thead>
@@ -55,13 +55,13 @@
                                         <form method="post" action="{{ route('blog.unpublish', $blog) }}">
                                             @csrf
                                             @method('put')
-                                            <x-primary-button class="bg-orange-500 hover:bg-orange-400 focus:bg-orange-400 active:bg-orange-400">Unublish</x-primary-button>
+                                            <x-primary-button class="bg-orange-500 hover:bg-orange-400 focus:bg-orange-400 active:bg-orange-400">Batalkan</x-primary-button>
                                         </form>
                                         @else
                                         <form method="post" action="{{ route('blog.publish', $blog) }}">
                                             @csrf
                                             @method('put')
-                                            <x-primary-button class="bg-green-500 hover:bg-green-400 focus:bg-green-400 active:bg-green-400">Publish</x-primary-button>
+                                            <x-primary-button class="bg-green-500 hover:bg-green-400 focus:bg-green-400 active:bg-green-400">Tampilkan</x-primary-button>
                                         </form>
                                         @endif                                       
                                         <x-danger-button onclick="deleteData({
@@ -76,9 +76,11 @@
                         </x-table.tbody>
                     </x-table>
 
-                    <div class={{ $blogs->hasPages() ? "mt-4" : "" }}>
+                    @if ($blogs->hasPages())
+                    <div class="mt-4">
                         {{ $blogs->links() }}
-                    </div>
+                    </div>                    
+                    @endif
                 </div>
             </div>
         </div>
