@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'image',
         'password',
         'is_active',
+        'email_verified_at'
     ];
 
     /**
@@ -46,5 +47,9 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function blogs(){
+        return $this->hasMany(Blog::class);
     }
 }

@@ -1,12 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TagController;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/blog/{blog:slug}', [BlogController::class, 'show'])->name('blog.show');
@@ -38,6 +39,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         
         Route::put('blog/publish/{blog:slug}', [BlogController::class, 'publish'])->name('blog.publish');
         Route::put('blog/unpublish/{blog:slug}', [BlogController::class, 'unpublish'])->name('blog.unpublish');
+
+        Route::get('user', [UserController::class, 'index'])->name('user');
+        Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+        Route::post('user/store', [UserController::class, 'store'])->name('user.store');
+        Route::get('user/edit/{user:username}', [UserController::class, 'edit'])->name('user.edit');
+        Route::put('user/update/{user:username}', [UserController::class, 'update'])->name('user.update');
+        Route::delete('user/destroy/{user:username}', [UserController::class, 'destroy'])->name('user.destroy');
+
+        Route::put('user/image/{user:username}', [UserController::class, 'imageUpload'])->name('user.image.upload');
+        Route::delete('user/image/{user:username}', [UserController::class, 'imageDestroy'])->name('user.image.destroy');
     });
 });
 
