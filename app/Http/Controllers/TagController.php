@@ -48,7 +48,7 @@ class TagController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('tag')->with('success', 'Data ' .$tag->name. ' berhasil diperbarui');;
+        return redirect()->route('tag')->with('success', 'Data ' .$tag->name. ' berhasil diperbarui');
     }
 
     public function destroy(Tag $tag){

@@ -102,7 +102,7 @@ class UserController extends Controller
         }
         
 
-        return redirect()->route('user')->with('success', 'Data ' .$user->name. ' berhasil diperbarui');;
+        return redirect()->route('user')->with('success', 'Data ' .$user->name. ' berhasil diperbarui');
     }
 
     public function destroy(User $user){

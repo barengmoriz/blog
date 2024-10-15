@@ -57,7 +57,7 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('category')->with('success', 'Data ' .$category->name. ' berhasil diperbarui');;
+        return redirect()->route('category')->with('success', 'Data ' .$category->name. ' berhasil diperbarui');
     }
 
     public function destroy(Category $category){
