@@ -37,6 +37,18 @@ Belajar membuat Blog menggunakan Laravel.
 -   Verifikasi Email
 -   Foto Profil
 
+### 5. Peran
+
+-   Tambah Data Peran
+-   Edit Data Peran
+-   Hapus Data Peran
+
+### 6. Hak Akses
+
+-   Tambah Data Hak Akses
+-   Edit Data Hak Akses
+-   Hapus Data Hak Akses
+
 ## Perbarui Aplikasi
 
 Catatan : Jika sudah melakukan unduh dan atur aplikasi, bisa langsung perbarui aplikasi saja tanpa instal dari awal.
@@ -49,6 +61,25 @@ composer install
 npm install
 php artisan migrate
 php artisan app:generate-username
+```
+
+Lakukan perintah berikut untuk mengisi data peran dan hak akses secara otomatis
+Catatan : jika dijalankan ulang, maka data peran dan hak akses akan disetel ulang ke data awal.
+
+```
+php artisan db:seed
+```
+
+Lakukan perintah berikut untuk memberikan peran Super Admin pada pengguna
+
+```
+php artisan app:set-superadmin
+```
+
+Kamu juga bisa lakukan perintah berikut, ubah `nama_pengguna` dengan nama pengguna yang akan dijadikan sebagai Super Admin
+
+```
+php artisan app:set-superadmin nama_pengguna
 ```
 
 Konfigurasi file .env
@@ -67,7 +98,7 @@ MAIL_PASSWORD=password_mailtrap
 
 ## Instalasi Aplikasi
 
-### Unduh source code
+### Unduh aplikasi
 
 ```bash
 git clone https://github.com/barengmoriz/blog.git
@@ -118,6 +149,25 @@ MAIL_PASSWORD=password_mailtrap
 
 Sesuaikan konfigurasi pada `.env` sesuai kebutuhan
 
+Lakukan perintah berikut untuk mengisi data peran dan hak akses secara otomatis
+Catatan : jika dijalankan ulang, maka data peran dan hak akses akan disetel ulang ke data awal.
+
+```
+php artisan db:seed
+```
+
+Lakukan perintah berikut untuk memberikan peran Super Admin pada pengguna
+
+```
+php artisan app:set-superadmin
+```
+
+Kamu juga bisa lakukan perintah berikut, ubah `nama_pengguna` dengan nama pengguna yang akan dijadikan sebagai Super Admin
+
+```
+php artisan app:set-superadmin nama_pengguna
+```
+
 ### Menjalankan storage link
 
 ```bash
@@ -154,3 +204,4 @@ npm run dev
 -   SweetAlert : https://sweetalert2.github.io
 -   Select2 : https://select2.org
 -   FakeData : https://www.fakedata.pro
+-   Laravel Permission : https://spatie.be/docs/laravel-permission/v6
