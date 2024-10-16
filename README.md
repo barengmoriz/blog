@@ -1,6 +1,9 @@
 ## Laravel Blog
 
 Belajar membuat Blog menggunakan Laravel.
+Dibuat oleh Moriz.
+
+Youtube Bareng Moriz : https://www.youtube.com/@barengmoriz.
 
 ## Kebutuhan
 
@@ -36,6 +39,8 @@ Belajar membuat Blog menggunakan Laravel.
 -   Hapus Data Pengguna
 -   Verifikasi Email
 -   Foto Profil
+-   Atur Peran
+-   Atur Hak Akses
 
 ### 5. Peran
 
@@ -53,7 +58,7 @@ Belajar membuat Blog menggunakan Laravel.
 
 Catatan : Jika sudah melakukan unduh dan atur aplikasi, bisa langsung perbarui aplikasi saja tanpa instal dari awal.
 
-Lakukan perintah berikut pada aplikasi yang sudah ada
+Lakukan perintah berikut pada aplikasi yang sudah ada.
 
 ```bash
 git pull
@@ -63,26 +68,27 @@ php artisan migrate
 php artisan app:generate-username
 ```
 
-Lakukan perintah berikut untuk mengisi data peran dan hak akses secara otomatis
+Lakukan perintah berikut untuk mengisi data peran dan hak akses secara otomatis.
+
 Catatan : jika dijalankan ulang, maka data peran dan hak akses akan disetel ulang ke data awal.
 
 ```
 php artisan db:seed
 ```
 
-Lakukan perintah berikut untuk memberikan peran Super Admin pada pengguna
+Lakukan perintah berikut untuk memberikan peran Super Admin pada pengguna.
 
 ```
 php artisan app:set-superadmin
 ```
 
-Kamu juga bisa lakukan perintah berikut, ubah `nama_pengguna` dengan nama pengguna yang akan dijadikan sebagai Super Admin
+Kamu juga bisa lakukan perintah berikut, ubah `nama_pengguna` dengan nama pengguna yang akan dijadikan sebagai Super Admin.
 
 ```
 php artisan app:set-superadmin nama_pengguna
 ```
 
-Konfigurasi file .env
+Konfigurasi file .env.
 
 ```
 APP_LOCALE=id
@@ -147,7 +153,7 @@ MAIL_USERNAME=username_mailtrap
 MAIL_PASSWORD=password_mailtrap
 ```
 
-Sesuaikan konfigurasi pada `.env` sesuai kebutuhan
+Sesuaikan konfigurasi pada `.env` sesuai kebutuhan.
 
 ### Menjalankan migrasi database
 
@@ -157,14 +163,15 @@ php artisan migrate
 
 ### Mengatur peran Super Admin pada pengguna
 
-Lakukan perintah berikut untuk mengisi data peran dan hak akses secara otomatis
+Lakukan perintah berikut untuk mengisi data peran dan hak akses secara otomatis.
+
 Catatan : jika dijalankan ulang, maka data peran dan hak akses akan disetel ulang ke data awal.
 
 ```
 php artisan db:seed
 ```
 
-Lakukan perintah berikut untuk memberikan peran Super Admin pada pengguna
+Lakukan perintah berikut untuk memberikan peran Super Admin pada pengguna.
 
 ```
 php artisan app:set-superadmin
@@ -188,7 +195,7 @@ php artisan storage:link
 php artisan serve
 ```
 
-Catatan : abaikan perintah di atas jika kalian menggunakan Laravel Herd, bisa langsung buka di browser http://blog.test
+Catatan : abaikan perintah di atas jika kalian menggunakan Laravel Herd, bisa langsung buka di browser http://blog.test.
 
 ### Menjalankan auto refresh / hot reload
 
