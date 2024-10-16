@@ -149,6 +149,14 @@ MAIL_PASSWORD=password_mailtrap
 
 Sesuaikan konfigurasi pada `.env` sesuai kebutuhan
 
+### Menjalankan migrasi database
+
+```bash
+php artisan migrate
+```
+
+### Mengatur peran Super Admin pada pengguna
+
 Lakukan perintah berikut untuk mengisi data peran dan hak akses secara otomatis
 Catatan : jika dijalankan ulang, maka data peran dan hak akses akan disetel ulang ke data awal.
 
@@ -172,12 +180,6 @@ php artisan app:set-superadmin nama_pengguna
 
 ```bash
 php artisan storage:link
-```
-
-### Menjalankan migrasi database
-
-```bash
-php artisan migrate
 ```
 
 ### Menjalankan aplikasi
