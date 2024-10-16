@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -20,7 +22,12 @@ class UserController extends Controller
     }
 
     public function create(){
-        return view('user.create');
+        $roles = Role::whereNot('name', 'Super Admin')->get();
+        $permissions = Permission::get();
+        return view('user.create', [
+            'roles' => $roles,
+            'permissions' => $permissions,
+        ]);
     }
 
     public function store(Request $request){
@@ -28,6 +35,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'min:5', 'unique:'.User::class],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'role' => ['required'],
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
@@ -38,14 +46,21 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $user->syncRoles($request->role);
+        $user->syncPermissions($request->permissions);
+
         event(new Registered($user));
 
         return redirect()->route('user')->with('success', 'Data ' .$user->name. ' berhasil disimpan');
     }
 
     public function edit(User $user){
+        $roles = Role::get();
+        $permissions = Permission::get();
         return view('user.edit', [
-            'user' => $user
+            'user' => $user,
+            'roles' => $roles,
+            'permissions' => $permissions,
         ]);
     }
 
@@ -55,6 +70,7 @@ class UserController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'username' => ['required', 'string', 'max:255', 'min:5', Rule::unique(User::class)->ignore($user->id)],
                 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+                'role' => ['required'],
                 'is_active' => ['required'],
                 'password' => ['required', Rules\Password::defaults()]
             ]);
@@ -63,6 +79,7 @@ class UserController extends Controller
                 'name' => $request->name,
                 'username' => $request->username,
                 'email' => $request->email,
+                'role' => ['required'],
                 'is_active' => $request->is_active,
                 'password' => Hash::make($request->password)
             ]);
@@ -81,6 +98,9 @@ class UserController extends Controller
                 'is_active' => $request->is_active
             ]);
         }
+
+        $user->syncRoles($request->role);
+        $user->syncPermissions($request->permissions);
 
         if($user->wasChanged('email')){
             $user->update([
