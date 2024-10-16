@@ -47,13 +47,31 @@
                         </div>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         <div class="flex flex-col space-y-2">
+                            <x-input-label for="role" :value="'Peran'" />
+                            <x-select id="role" name="role">
+                                @foreach ($roles as $role)
+                                <option value="{{ $role->name }}" {{ $user->roles->contains('id', $role->id) ? 'selected': '' }}>{{ $role->name }}</option>
+                                @endforeach
+                            </x-select>
+                        </div>
+                        <x-input-error :messages="$errors->get('role')" />
+                        <div class="flex flex-col space-y-2">
+                            <x-input-label for="permissions" :value="'Hak Akses'" />
+                            <x-select class="select2" id="permissions" name="permissions[]" multiple>
+                                @foreach ($permissions as $permission)
+                                <option value="{{ $permission->name }}" {{ $user->permissions->contains('id', $permission->id) ? 'selected': '' }}>{{ $permission->name }}</option>
+                                @endforeach
+                            </x-select>
+                        </div>
+                        <x-input-error :messages="$errors->get('permissions')" />
+                        <div class="flex flex-col space-y-2">
                             <x-input-label for="is_active" :value="'Status'" />
                             <x-select id="is_active" name="is_active">
                                 <option value="1" {{ $user->is_active == true ? 'selected': '' }}>Aktif</option>
                                 <option value="0" {{ $user->is_active == false ? 'selected': '' }}>Tidak Aktif</option>
                             </x-select>
                         </div>
-                        <x-input-error :messages="$errors->get('username')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
                         <div class="flex flex-col space-y-2">
                             <x-input-label for="password" :value="'Kata Sandi'" />
                             <x-text-input type="text" id="password" name="password" />
