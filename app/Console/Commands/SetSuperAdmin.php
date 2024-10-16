@@ -34,7 +34,7 @@ class SetSuperAdmin extends Command
 
         $user = User::where('username', $username)->first();
         if($user){
-            $user->assignRole('Super Admin');
+            $user->syncRoles('Super Admin');
             $this->info("Saat ini {$user->name} ({$user->username}) adalah Super Admin");
         } else {
             $this->info("Nama pengguna {$username} tidak dapat ditemukan");
