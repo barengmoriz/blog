@@ -16,32 +16,32 @@
                         Dashboard
                     </x-nav-link>
                     @can('Kategori')
-                    <x-nav-link :href="route('category')" :active="request()->routeIs('category')">
+                    <x-nav-link :href="route('category')" :active="request()->routeIs('category*')">
                         Kategori
                     </x-nav-link>
                     @endcan
                     @can('Tag')
-                    <x-nav-link :href="route('tag')" :active="request()->routeIs('tag')">
+                    <x-nav-link :href="route('tag')" :active="request()->routeIs('tag*')">
                         Tag
                     </x-nav-link>
                     @endcan
                     @can('Blog')
-                    <x-nav-link :href="route('blog')" :active="request()->routeIs('blog')">
+                    <x-nav-link :href="route('blog')" :active="request()->routeIs('blog*')">
                         Blog
                     </x-nav-link>
                     @endcan
                     @can('Pengguna')
-                    <x-nav-link :href="route('user')" :active="request()->routeIs('user')">
+                    <x-nav-link :href="route('user')" :active="request()->routeIs('user*')">
                         Pengguna
                     </x-nav-link>
                     @endcan
                     @can('Peran')
-                    <x-nav-link :href="route('role')" :active="request()->routeIs('role')">
+                    <x-nav-link :href="route('role')" :active="request()->routeIs('role*')">
                         Peran
                     </x-nav-link>
                     @endcan
                     @can('Hak Akses')
-                    <x-nav-link :href="route('permission')" :active="request()->routeIs('permission')">
+                    <x-nav-link :href="route('permission')" :active="request()->routeIs('permission*')">
                         Hak Akses
                     </x-nav-link>
                     @endcan
@@ -105,32 +105,32 @@
                 Dashboard
             </x-responsive-nav-link>
             @can('Kategori')
-            <x-responsive-nav-link :href="route('category')" :active="request()->routeIs('category')">
+            <x-responsive-nav-link :href="route('category')" :active="request()->routeIs('category*')">
                 Kategori
             </x-responsive-nav-link>
             @endcan
             @can('Tag')
-            <x-responsive-nav-link :href="route('tag')" :active="request()->routeIs('tag')">
+            <x-responsive-nav-link :href="route('tag')" :active="request()->routeIs('tag*')">
                 Tag
             </x-responsive-nav-link>
             @endcan
             @can('Blog')
-            <x-responsive-nav-link :href="route('blog')" :active="request()->routeIs('blog')">
+            <x-responsive-nav-link :href="route('blog')" :active="request()->routeIs('blog*')">
                 Blog
             </x-responsive-nav-link>
             @endcan
             @can('Pengguna')
-            <x-responsive-nav-link :href="route('user')" :active="request()->routeIs('user')">
+            <x-responsive-nav-link :href="route('user')" :active="request()->routeIs('user*')">
                 Pengguna
             </x-responsive-nav-link>
             @endcan
             @can('Peran')
-            <x-responsive-nav-link :href="route('role')" :active="request()->routeIs('role')">
+            <x-responsive-nav-link :href="route('role')" :active="request()->routeIs('role*')">
                 Peran
             </x-responsive-nav-link>
             @endcan
             @can('Hak Akses')
-            <x-responsive-nav-link :href="route('permission')" :active="request()->routeIs('permission')">
+            <x-responsive-nav-link :href="route('permission')" :active="request()->routeIs('permission*')">
                 Hak Akses
             </x-responsive-nav-link>
             @endcan
