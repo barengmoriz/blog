@@ -104,7 +104,7 @@ MAIL_PASSWORD=password_mailtrap
 git clone https://github.com/barengmoriz/blog.git
 ```
 
-Catatan: Jika kalian menggunakan Laravel Herd, lakukan `git clone` pada `Herd paths` yang telah kalian atur.
+Catatan : Jika kalian menggunakan Laravel Herd, lakukan `git clone` pada `Herd paths` yang telah kalian atur.
 
 ### Instal paket php dan nodejs
 
