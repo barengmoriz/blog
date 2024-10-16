@@ -9,9 +9,11 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @can('Hak Akses Tambah')
                     <div class="mb-6">
                         <x-primary-link href="{{ route('permission.create') }}">Tambah Hak Akses</x-primary-link>
                     </div>
+                    @endcan
 
                     <x-table>
                         <x-table.thead>
@@ -30,12 +32,16 @@
                                 <x-table.td>{{ $permission->roles->implode('name', ', ') }}</x-table.td>
                                 <x-table.td class="w-48">
                                     <div class="flex justify-center space-x-2">
+                                        @can('Hak Akses Edit')
                                         <x-secondary-link href="{{ route('permission.edit', $permission) }}">Edit</x-secondary-link>
+                                        @endcan
+                                        @can('Hak Akses Hapus')
                                         <x-danger-button onclick="deleteData({
                                             'data': {{ $permission }},
                                             'dataName': '{{ $permission->name }}',
                                             'url' : '{{ route('permission.destroy', $permission) }}'
-                                        })">Hapus</x-danger-button>
+                                            })">Hapus</x-danger-button>
+                                        @endcan
                                     </div>
                                 </x-table.td>
                             </x-table.tr>

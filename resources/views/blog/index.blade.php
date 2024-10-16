@@ -9,9 +9,11 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @can('Blog Tambah')
                     <div class="mb-6">
                         <x-primary-link href="{{ route('blog.create') }}">Tambah Blog</x-primary-link>
                     </div>
+                    @endcan
 
                     <x-table>
                         <x-table.thead>
@@ -50,7 +52,10 @@
                                 </x-table.td>
                                 <x-table.td>
                                     <div class="flex justify-center space-x-2">
+                                        @can('Blog Edit')
                                         <x-secondary-link href="{{ route('blog.edit', $blog) }}">Edit</x-secondary-link>
+                                        @endcan
+                                        @can('Blog Tayang')
                                         @if ($blog->is_publish)
                                         <form method="post" action="{{ route('blog.unpublish', $blog) }}">
                                             @csrf
@@ -63,12 +68,15 @@
                                             @method('put')
                                             <x-primary-button class="bg-green-500 hover:bg-green-400 focus:bg-green-400 active:bg-green-400">Tampilkan</x-primary-button>
                                         </form>
-                                        @endif                                       
+                                        @endif 
+                                        @endcan
+                                        @can('Blog Hapus')                                   
                                         <x-danger-button onclick="deleteData({
                                             'data': {{ $blog }},
                                             'dataName': '{{ $blog->title }}',
                                             'url' : '{{ route('blog.destroy', $blog) }}'
-                                        })">Hapus</x-danger-button>
+                                            })">Hapus</x-danger-button>
+                                        @endcan
                                     </div>
                                 </x-table.td>
                             </x-table.tr>

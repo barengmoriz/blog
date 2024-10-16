@@ -9,9 +9,11 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @can('Tag Tambah')
                     <div class="mb-6">
                         <x-primary-link href="{{ route('tag.create') }}">Tambah Tag</x-primary-link>
                     </div>
+                    @endcan
 
                     <x-table>
                         <x-table.thead>
@@ -30,12 +32,16 @@
                                 <x-table.td>{{ $tag->name }}</x-table.td>
                                 <x-table.td class="w-48">
                                     <div class="flex justify-center space-x-2">
+                                        @can('Tag Edit')
                                         <x-secondary-link href="{{ route('tag.edit', $tag) }}">Edit</x-secondary-link>
+                                        @endcan
+                                        @can('Tag Hapus')
                                         <x-danger-button onclick="deleteData({
                                             'data': {{ $tag }},
                                             'dataName': '{{ $tag->name }}',
                                             'url' : '{{ route('tag.destroy', $tag) }}'
                                         })">Hapus</x-danger-button>
+                                        @endcan
                                     </div>
                                 </x-table.td>
                             </x-table.tr>
