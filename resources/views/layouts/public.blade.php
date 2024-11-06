@@ -21,15 +21,33 @@
             <!-- Page Content -->
             <main>
                 <div class="py-12">
-                    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                        <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+                    <div class="flex flex-col gap-4 mx-auto lg:flex-row max-w-7xl sm:px-6 lg:px-8">
+                        <div class="w-full overflow-hidden bg-white shadow-sm lg:w-2/3 dark:bg-gray-800 sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
                                 {{ $slot }}
+                            </div>
+                        </div>
+                        <div class="w-full overflow-hidden bg-white shadow-sm lg:w-1/3 dark:bg-gray-800 sm:rounded-lg">
+                            <div class="p-6 text-gray-900 dark:text-gray-100">
+                                <div class="flex flex-col space-y-4">
+                                    <x-category-widget />
+                                    <x-tag-widget />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
         </div>
+
+        <script>
+            (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://{{ config("disqus.short_name") }}.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </body>
 </html>
