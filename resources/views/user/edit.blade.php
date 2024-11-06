@@ -47,14 +47,14 @@
                         </div>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         <div class="flex flex-col space-y-2">
-                            <x-input-label for="role" :value="'Peran'" />
-                            <x-select id="role" name="role">
+                            <x-input-label for="roles" :value="'Peran'" />
+                            <x-select class="select2" id="roles" name="roles[]" multiple>
                                 @foreach ($roles as $role)
                                 <option value="{{ $role->name }}" {{ $user->roles->contains('id', $role->id) ? 'selected': '' }}>{{ $role->name }}</option>
                                 @endforeach
                             </x-select>
                         </div>
-                        <x-input-error :messages="$errors->get('role')" />
+                        <x-input-error :messages="$errors->get('roles')" />
                         <div class="flex flex-col space-y-2">
                             <x-input-label for="permissions" :value="'Hak Akses'" />
                             <x-select class="select2" id="permissions" name="permissions[]" multiple>

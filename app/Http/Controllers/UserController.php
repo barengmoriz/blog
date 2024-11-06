@@ -35,7 +35,6 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'min:5', 'unique:'.User::class],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'role' => ['required'],
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
@@ -46,7 +45,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->syncRoles($request->role);
+        $user->syncRoles($request->roles);
         $user->syncPermissions($request->permissions);
 
         event(new Registered($user));
@@ -70,7 +69,6 @@ class UserController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'username' => ['required', 'string', 'max:255', 'min:5', Rule::unique(User::class)->ignore($user->id)],
                 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
-                'role' => ['required'],
                 'is_active' => ['required'],
                 'password' => ['required', Rules\Password::defaults()]
             ]);
@@ -79,7 +77,6 @@ class UserController extends Controller
                 'name' => $request->name,
                 'username' => $request->username,
                 'email' => $request->email,
-                'role' => ['required'],
                 'is_active' => $request->is_active,
                 'password' => Hash::make($request->password)
             ]);
@@ -99,7 +96,7 @@ class UserController extends Controller
             ]);
         }
 
-        $user->syncRoles($request->role);
+        $user->syncRoles($request->roles);
         $user->syncPermissions($request->permissions);
 
         if($user->wasChanged('email')){

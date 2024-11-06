@@ -42,7 +42,7 @@
                                         <img class="object-cover rounded-full size-10" src="{{ $user->image ? Storage::url($user->image) : Avatar::create($user->name)->toBase64() }}" alt="" srcset="">
                                     </div>
                                 </x-table.td>
-                                <x-table.td>{{ $user->getRoleNames()->implode(',') }}</x-table.td>
+                                <x-table.td>{{ $user->getRoleNames()->implode(', ',) }}</x-table.td>
                                 <x-table.td>{{ $user->getDirectPermissions()->implode('name', ', ') }}</x-table.td>
                                 <x-table.td class="text-center">                                        
                                     @if ($user->is_active)
