@@ -1,6 +1,6 @@
 <x-public-layout>
     <div class="flex items-center justify-center mb-6 text-3xl font-bold underline">Blog</div>
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
         @foreach ($blogs as $blog)
         <div class="space-y-2">
             <div>
