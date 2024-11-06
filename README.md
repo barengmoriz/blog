@@ -31,6 +31,7 @@ Youtube Bareng Moriz : https://www.youtube.com/@barengmoriz.
 -   Edit Data Blog
 -   Hapus Data Blog
 -   Tayang Blog
+-   Komentar Blog dengan Disqus
 
 ### 4. Pengguna
 
@@ -94,6 +95,7 @@ Konfigurasi file .env.
 APP_LOCALE=id
 FILESYSTEM_DISK=public
 API_KEY_TINYMCE="isiapikeytinymcekamu"
+SHORT_NAME_DISQUS="isishortnamedisquskamu"
 
 MAIL_MAILER=smtp
 MAIL_HOST=sandbox.smtp.mailtrap.io
@@ -145,6 +147,7 @@ DB_PASSWORD=
 APP_LOCALE=id
 FILESYSTEM_DISK=public
 API_KEY_TINYMCE="isiapikeytinymcekamu"
+SHORT_NAME_DISQUS="isishortnamedisquskamu"
 
 MAIL_MAILER=smtp
 MAIL_HOST=sandbox.smtp.mailtrap.io
@@ -214,3 +217,4 @@ npm run dev
 -   Select2 : https://select2.org
 -   FakeData : https://www.fakedata.pro
 -   Laravel Permission : https://spatie.be/docs/laravel-permission/v6
+-   Disqus : https://disqus.com
