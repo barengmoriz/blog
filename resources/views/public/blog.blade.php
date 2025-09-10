@@ -14,10 +14,12 @@
             <div>{{ $blog->custom_created_at }}</div>
         </div>
         <div class="flex flex-col justify-between space-y-4 lg:space-y-0 lg:flex-row">
-            <div>{{ $blog->category->name }}</div>
+            <div>
+                <a href="{{ route('category.show', $blog->category->slug) }}">{{ $blog->category->name }}</a>
+            </div>
             <div>
                 @foreach ($blog->tags as $tag)
-                    {{ $tag->name }}
+                    <a href="{{ route('tag.show', $tag->slug) }}" class="underline">{{ $tag->name }}</a>
                 @endforeach
             </div>
         </div>

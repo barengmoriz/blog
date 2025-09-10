@@ -22,7 +22,7 @@ class TagWidget extends Component
      */
     public function render(): View|Closure|string
     {
-        $tags = Tag::get();
+        $tags = Tag::whereHas('blogs')->get();
         
         return view('components.widget-tag', [
             'tags' => $tags,

@@ -65,4 +65,13 @@ class TagController extends Controller
             ];
         }
     }
+
+    public function show(Tag $tag){
+        $blogs = $tag->blogs()->where('is_publish', true)->latest()->paginate(10);
+
+        return view('public.tag', [
+            'tag' => $tag,
+            'blogs' => $blogs,
+        ]);
+    }
 }

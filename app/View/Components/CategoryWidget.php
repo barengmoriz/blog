@@ -23,7 +23,7 @@ class CategoryWidget extends Component
      */
     public function render(): View|Closure|string
     {
-        $categories = Category::get();
+        $categories = Category::whereHas('blogs')->get();
         
         return view('components.widget-category', [
             'categories' => $categories

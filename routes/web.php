@@ -13,6 +13,8 @@ use App\Http\Controllers\PermissionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/blog/{blog:slug}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/tag/{tag:slug}', [TagController::class, 'show'])->name('tag.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('dashboard')->group(function (){

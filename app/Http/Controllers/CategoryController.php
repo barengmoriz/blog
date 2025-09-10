@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -73,5 +74,14 @@ class CategoryController extends Controller
                 'message' => 'Data '.$category->name.' berhasil dihapus'
             ];
         }
+    }
+
+    public function show(Category $category){
+        $blogs = $category->blogs()->where('is_publish', true)->latest()->paginate(10);
+
+        return view('public.category', [
+            'category' => $category,
+            'blogs' => $blogs,
+        ]);
     }
 }

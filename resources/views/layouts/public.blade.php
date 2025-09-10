@@ -27,7 +27,7 @@
                                 {{ $slot }}
                             </div>
                         </div>
-                        <div class="w-full overflow-hidden bg-white shadow-sm lg:w-1/3 dark:bg-gray-800 sm:rounded-lg">
+                        <div class="w-full overflow-hidden bg-white shadow-sm lg:w-1/3 dark:bg-gray-800 sm:rounded-lg h-fit">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
                                 <div class="flex flex-col space-y-4">
                                     <x-category-widget />
